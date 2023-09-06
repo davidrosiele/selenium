@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ExerciciosSelenium {
@@ -28,6 +29,9 @@ public class ExerciciosSelenium {
         driver.findElement(By.xpath("//input[@id='checkbox1']")).click();
         Assert.assertTrue(driver.findElement(By.xpath("//input[@id='checkbox1']")).isSelected());
 
+        driver.findElement(By.xpath("//div[@id='msdd']")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//a[contains(text(),'Ukrainian')]")).click();
     }
     @AfterClass
     public static void after()throws InterruptedException{
