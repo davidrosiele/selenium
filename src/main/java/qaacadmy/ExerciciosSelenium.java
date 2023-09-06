@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class ExerciciosSelenium {
     static WebDriver driver;
@@ -30,11 +31,50 @@ public class ExerciciosSelenium {
         Assert.assertTrue(driver.findElement(By.xpath("//input[@id='checkbox1']")).isSelected());
 
         driver.findElement(By.xpath("//div[@id='msdd']")).click();
-        Thread.sleep(1000);
+
+
         driver.findElement(By.xpath("//a[contains(text(),'Portuguese')]")).click();
         driver.findElement(By.xpath("//a[contains(text(),'English')]")).click();
-        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Portuguese') and @class='ui-autocomplete-multiselect-item']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'English') and @class='ui-autocomplete-multiselect-item']")).isDisplayed());
+
+
+        boolean linguagemPortuguesSelecionada = driver.findElement(By.xpath("//div[contains(text(),'Portuguese') and @class='ui-autocomplete-multiselect-item']")).isDisplayed();
+        boolean linguagemEnglishSelecionada = driver.findElement(By.xpath("//div[contains(text(),'English') and @class='ui-autocomplete-multiselect-item']")).isDisplayed();
+        Assert.assertTrue(linguagemPortuguesSelecionada && linguagemEnglishSelecionada);
+
+        Select selectObject = new Select(driver.findElement(By.xpath("//select[@id='Skills']")));
+        selectObject.selectByVisibleText("Java");
+
+        driver.findElement(By.xpath("//body/span[1]/span[1]/span[1]")).click();
+        driver.findElement(By.xpath("//li[contains(text(),'United states of America')]")).click();
+
+        Select selectAnoAniversario = new Select( driver.findElement(By.xpath("//select[@id='yearbox']")));
+        selectAnoAniversario.selectByVisibleText("1988");
+
+        Select selectMes = new Select( driver.findElement(By.xpath("//body/section[@id='section']/div[1]/div[1]/div[2]/form[1]/div[11]/div[2]/select[1]")));
+        selectMes.selectByVisibleText("April");
+
+        Select selectDia = new Select( driver.findElement(By.xpath("//select[@id='daybox']")));
+        selectDia.selectByVisibleText("15");
+
+        driver.findElement(By.xpath("//input[@id='firstpassword']")).sendKeys("Test");
+
+        driver.findElement(By.xpath("//input[@id='secondpassword']")).sendKeys("Test");
+
+        driver.findElement(By.xpath("//input[@id='submitbtn']")).click();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
     @AfterClass
     public static void after()throws InterruptedException{
