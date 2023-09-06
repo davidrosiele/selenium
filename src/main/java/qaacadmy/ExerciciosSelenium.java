@@ -31,7 +31,10 @@ public class ExerciciosSelenium {
 
         driver.findElement(By.xpath("//div[@id='msdd']")).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath("//a[contains(text(),'Ukrainian')]")).click();
+        driver.findElement(By.xpath("//a[contains(text(),'Portuguese')]")).click();
+        driver.findElement(By.xpath("//a[contains(text(),'English')]")).click();
+        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Portuguese') and @class='ui-autocomplete-multiselect-item']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'English') and @class='ui-autocomplete-multiselect-item']")).isDisplayed());
     }
     @AfterClass
     public static void after()throws InterruptedException{
