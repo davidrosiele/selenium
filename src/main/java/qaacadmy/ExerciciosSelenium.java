@@ -10,14 +10,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
 public class ExerciciosSelenium {
     static WebDriver driver;
     @Test
     public void testFormularioSelenium() throws InterruptedException{
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://demo.automationtesting.in/Register.html");
-        Thread.sleep(5000);
+
         driver.findElement(By.xpath("//*[@placeholder='First Name']")).sendKeys("David");
         driver.findElement(By.xpath("//*[@placeholder='Last Name']")).sendKeys("Leandro");
         driver.findElement(By.xpath("//*[@id='basicBootstrapForm']/div[2]/div/textarea")).sendKeys("Av modolo, 16");
@@ -56,11 +60,11 @@ public class ExerciciosSelenium {
         Select selectDia = new Select( driver.findElement(By.xpath("//select[@id='daybox']")));
         selectDia.selectByVisibleText("15");
 
-        driver.findElement(By.xpath("//input[@id='firstpassword']")).sendKeys("Test");
+        driver.findElement(By.xpath("//*input[@id='firstpassword']")).sendKeys("Test");
 
-        driver.findElement(By.xpath("//input[@id='secondpassword']")).sendKeys("Test");
+        driver.findElement(By.xpath("//*input[@id='secondpassword']")).sendKeys("Test");
 
-        driver.findElement(By.xpath("//input[@id='submitbtn']")).click();
+        driver.findElement(By.cssSelector("#submitbtn")).click();
 
 
 
@@ -78,7 +82,7 @@ public class ExerciciosSelenium {
     }
     @AfterClass
     public static void after()throws InterruptedException{
-        Thread.sleep(3000);
+
         driver.quit();
 
     }
