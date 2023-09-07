@@ -64,6 +64,7 @@ public class ExerciciosAlertas {
     }
     @After
     public  void after(){
+
         driver.quit();
     }
     }
