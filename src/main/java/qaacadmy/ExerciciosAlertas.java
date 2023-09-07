@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class ExerciciosAlertas {
@@ -16,7 +17,7 @@ public class ExerciciosAlertas {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("http://demo.automationtesting.in/Alerts.html");
+        driver.get("http://demo.automationtesting.in/Windows.html");
 
     }
 
@@ -29,7 +30,15 @@ public class ExerciciosAlertas {
         Thread.sleep(2000);
         alert.accept();
     Assert.assertEquals(mensagemEsperada, mensagemAlerta );
-
+}
+    @Test
+    public void testejanelasWindow() throws InterruptedException {
+        driver.findElement(By.linkText("click")).click();
+        System.out.println(driver.getCurrentUrl());
+        Object [] janelas = driver.getWindowHandles().toArray();
+        driver.switchTo().window(janelas[1].toString());
+        System.out.println(driver.getCurrentUrl());
+        Assert.assertTrue(driver.getCurrentUrl().equals("https://www.selenium.dev/"));
     }
     @Test
     public void testesAlertaComOkCancela() throws InterruptedException {
